@@ -1,4 +1,4 @@
-package com.predoana.app.web;
+package com.predoana.app.web.config;
 
 import org.springframework.context.annotation.Condition;
 import org.springframework.context.annotation.ConditionContext;
