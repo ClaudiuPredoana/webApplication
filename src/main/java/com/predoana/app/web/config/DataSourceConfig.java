@@ -1,5 +1,10 @@
 package com.predoana.app.web.config;
 
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.stereotype.Component;
+
+@Component
+@ConfigurationProperties(prefix="jdbc")
 public class DataSourceConfig {
     private String driver;
     private String url;
