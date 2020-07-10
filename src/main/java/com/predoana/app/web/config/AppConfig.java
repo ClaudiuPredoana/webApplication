@@ -12,7 +12,7 @@ public class AppConfig {
 
     @DatabaseType("MYSQL")
     public UserDAO jdbcUserDAO() {
-        return new JdbcUserDAO();
+        return (UserDAO) new JdbcUserDAO();
     }
 
 }
