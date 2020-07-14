@@ -20,7 +20,8 @@ public class UserRepository {
 
     @Transactional(readOnly=true)
     public User findUserById(int id) {
-    return jdbcTemplate.queryForObject("select * from users where id=?",                                        new Object[]{id}, new UserRowMapper());
+    return jdbcTemplate.queryForObject("select * from users where id=?",
+            new Object[]{id}, new UserRowMapper());
 }
     public User create(final User user) {
      final String sql = "insert into users(name,email) values(?,?)";
@@ -28,7 +29,14 @@ public class UserRepository {
         jdbcTemplate.update(new PreparedStatementCreator() {
 
             @Override
-            public PreparedStatement createPreparedStatement(Connection connection)                        throws SQLException {                    PreparedStatement ps = connection                            .prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);                    ps.setString(1, user.getName());                    ps.setString(2, user.getEmail());                    return ps;                }            }, holder);
+            public PreparedStatement createPreparedStatement(Connection connection)
+                    throws SQLException {
+                PreparedStatement ps = connection
+                        .prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
+                ps.setString(1, user.getName());
+                ps.setString(2, user.getEmail());
+                return ps; }
+            }, holder);
         int newUserId = holder.getKey().intValue();
         user.setId(newUserId);
         return user;
