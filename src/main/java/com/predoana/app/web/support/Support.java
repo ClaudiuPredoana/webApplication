@@ -4,6 +4,10 @@ import com.sun.istack.internal.NotNull;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
+
 @Component
 @ConfigurationProperties(prefix="support")
 public class Support {
@@ -14,7 +18,8 @@ public class Support {
     @Email
     private String email;
 
-    @Min(1) @Max(5)
+    @Min(1)
+    @Max(5)
     private Integer severity;
 
     public String getApplicationName() {
